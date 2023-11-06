@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}TopWear{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row ">
+  <div class="col-sm-3 ">
+    <div class="row ">
+        <div class="col-8 text-center my-5">
+            <div class="list-group " id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" href="{% url 'topwear' %}"  aria-current="true">Top Wear</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Raymond' %}"  aria-current="true">Raymond</a>
+            <a class="list-group-item list-group-item-action "  href="{% url 'topweardata' 'Selvia' %}" aria-current="true">Selvia</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'KeriPerry' %}"  aria-current="true">Keri Perry</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Denim' %}"  aria-current="true">Denim</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Eta' %}"  aria-current="true">Eta</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Harpa' %}"  aria-current="true">Harpa</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Lymio' %}"  aria-current="true">Lymio</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Below' %}"  aria-current="true">Below 500</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'topweardata' 'Above' %}"  aria-current="true">Above 500</a> 
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="col-sm-8">
+  
+    <div class="row my-5">
+        {% for tw in topwear %}
+        <div class="col-sm-4 text-center mb-4">
+            <a href="{% url 'product-detail' tw.id %}">
+            <img src="{{tw.product_image.url}}" class="img-thumbnail" alt=""> </a>
+            <div><h4>{{tw.brand}}</h4></div>
+            <h5>Rs. {{ tw.discounted_price }} <small class="fw-light text-decoration-line-through">{{ tw.selling_price}}</small></h5>
+       
+        </div>
+        {% endfor %}
+    </div>
+ 
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
